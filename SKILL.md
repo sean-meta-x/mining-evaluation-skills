@@ -59,6 +59,21 @@ If it's ambiguous, ask — but a reasonable default is: if the user says "report
 
 When producing a formal report, use `assets/templates/` as a structural starting point (see below), not a form to fill mechanically — cut sections that don't apply and add ones the specific project needs.
 
+**Font consistency for Chinese-language docx reports.** If the report contains Chinese text, set the font once at the document level rather than per run — setting it only on individual `TextRun`s (e.g. just the bolded figures or table cells) while leaving others unset causes Word to render the unset runs in a fallback font, producing visibly inconsistent fonts within the same paragraph. When building the document with docx-js, set it in the document's `styles.default.document.run.font`:
+```javascript
+const doc = new Document({
+  styles: {
+    default: {
+      document: {
+        run: { font: { name: "Microsoft YaHei", eastAsia: "Microsoft YaHei" } },
+      },
+    },
+  },
+  sections: [ /* ... */ ],
+});
+```
+Setting both `name` and `eastAsia` to the same font (Microsoft YaHei) ensures Latin and Chinese characters resolve to one consistent typeface throughout the document, without needing to set `font` on every individual `TextRun`. Only override font on a specific run if that run intentionally needs to look different (e.g. a monospaced figure).
+
 ## Step 4: Reporting standards and templates
 
 `references/reporting-standards.md` covers what NI 43-101, JORC, and CRIRSCO actually require, how they differ, and where they converge (they're all CRIRSCO-family codes), plus a regional-standards section covering Brazil, Russia's GKZ classification (A/B/C1/C2), and South Africa's SAMREC code. Consult it whenever the user references a standard by name, or when producing anything that resembles a technical report — get the section structure and disclosure language right rather than inventing generic headers. Note in particular: GKZ does not map one-to-one onto CRIRSCO's Measured/Indicated/Inferred categories — treat any cross-system correspondence as an open, QP-dependent question rather than asserting a conversion.

@@ -2,6 +2,14 @@
 
 All notable changes to `mining-evaluation-skills` are documented here.
 
+## v1.2 — Fixed inconsistent fonts in Chinese docx reports
+
+**Fixed**: generated Word reports containing Chinese content sometimes showed inconsistent fonts within the same paragraph (e.g. bolded figures or table cells rendering in a different font than surrounding body text).
+
+**Root cause**: the docx-generation step was only setting font on specific `TextRun`s (e.g. bolded figures), leaving other runs without an explicit font. Word falls back to its theme default font for unset runs, and that fallback doesn't necessarily match a font set explicitly elsewhere in the same paragraph, producing visibly mismatched fonts.
+
+**Fix**: `SKILL.md` now instructs setting the font once at the document level (`styles.default.document.run.font`, with both `name` and `eastAsia` set to **Microsoft YaHei**) rather than per run. All runs — headings, body text, bold figures, table cells — inherit this single consistent font unless a run deliberately needs to look different. Verified in the sandbox that this produces a single `rFonts` declaration in `styles.xml` with no conflicting per-run overrides in `document.xml`.
+
 ## v1.1 — Metals expansion, regional standards, terminology fixes
 
 **Added — 5 new metal reference files** (`references/metals/`):
