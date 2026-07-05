@@ -15,6 +15,8 @@ The core job is almost always the same shape: the user hands you raw or partiall
 
 Respond in the language the user is writing in (the skill defaults to English internally, but adapt output — including report headers — to match the user's query language). If the user mixes languages or asks for a specific report language, follow that instruction over the query language.
 
+When responding in Chinese, consult `references/terminology-glossary-zh.md` before finalizing terminology — several mining terms (grade/cut-off distinctions, Resource vs. Reserve, PEA/PFS/FS naming, resource category names) get mistranslated or merged by generic translation in ways that change technical or legal meaning. Use the corrected terms from that file even if the user's own phrasing uses a conflated or imprecise term, and briefly flag the distinction rather than silently mirroring an imprecise term back.
+
 ## Step 1: Figure out what's actually being asked
 
 Before producing anything, identify:
@@ -25,7 +27,7 @@ Before producing anything, identify:
    - Risk assessment → `references/risk-assessment.md`
    - Reporting/compliance (NI 43-101, JORC, CRIRSCO) → `references/reporting-standards.md`
    - ESG / sustainability / mining method choice → `references/esg-sustainability.md`
-2. **Commodity** — if the user names or implies a specific metal, check `references/metals/` for a file matching it (copper, gold, lithium, cobalt, lead-zinc, niobium-tantalum, nickel, rare-earth). These give you commodity-specific benchmarks (typical grades, cut-offs, deposit types, processing routes, market drivers) so your interpretation isn't generic. If no specific metal is named, work generically and note that assumptions are commodity-agnostic.
+2. **Commodity** — if the user names or implies a specific metal, check `references/metals/` for a file matching it: copper, gold, lithium, cobalt, lead-zinc, niobium-tantalum, nickel, rare-earth, molybdenum, tungsten, scheelite, zirconium, titanium. These give you commodity-specific benchmarks (typical grades, cut-offs, deposit types, processing routes, market drivers) so your interpretation isn't generic. Molybdenum, tungsten, and scheelite are closely related but kept as separate files because their processing routes diverge (see the note at the top of `tungsten.md`); the same applies to zirconium and titanium, which are usually co-produced from the same heavy mineral sand deposits but serve different end markets. If no specific metal is named, work generically and note that assumptions are commodity-agnostic.
 3. **Project stage** — grassroots exploration vs. resource definition vs. PEA vs. PFS/FS vs. operating mine. This changes what data confidence and precision is reasonable to expect (see `references/economic-feasibility.md` for the accuracy bands of each stage).
 4. **Audience** — a geologist wants technical precision and defensible methodology language; an investor wants risk-adjusted takeaways and comparability to peers. Calibrate the report's tone and level of jargon accordingly, but never fabricate confidence the data doesn't support — both audiences are worse served by false precision.
 
@@ -59,7 +61,7 @@ When producing a formal report, use `assets/templates/` as a structural starting
 
 ## Step 4: Reporting standards and templates
 
-`references/reporting-standards.md` covers what NI 43-101, JORC, and CRIRSCO actually require, how they differ, and where they converge (they're all CRIRSCO-family codes). Consult it whenever the user references a standard by name, or when producing anything that resembles a technical report — get the section structure and disclosure language right rather than inventing generic headers.
+`references/reporting-standards.md` covers what NI 43-101, JORC, and CRIRSCO actually require, how they differ, and where they converge (they're all CRIRSCO-family codes), plus a regional-standards section covering Brazil, Russia's GKZ classification (A/B/C1/C2), and South Africa's SAMREC code. Consult it whenever the user references a standard by name, or when producing anything that resembles a technical report — get the section structure and disclosure language right rather than inventing generic headers. Note in particular: GKZ does not map one-to-one onto CRIRSCO's Measured/Indicated/Inferred categories — treat any cross-system correspondence as an open, QP-dependent question rather than asserting a conversion.
 
 `assets/templates/` has generic, standards-informed starting structures:
 - `resource_estimation_report.md`
