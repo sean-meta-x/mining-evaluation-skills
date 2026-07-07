@@ -1,6 +1,6 @@
 ---
 name: mining-evaluation-skills
-description: Use for any mining/mineral project evaluation task, including resource estimation, grade-tonnage analysis, economic feasibility (PEA/PFS/FS), geological modeling, cut-off grade sensitivity, risk assessment (geological, technical, market, environmental), or reporting against NI 43-101/JORC/CRIRSCO standards. Trigger when the user is an exploration geologist, mining investor, or analyst asking Claude to interpret drill/assay/geological data, evaluate a mining project's viability, draft or review a technical/investment report on a deposit, compare resource categories (Measured/Indicated/Inferred), estimate NPV/IRR for a mine plan, or discuss copper, gold, lithium, cobalt, lead, zinc, niobium, tantalum, nickel, or rare earths. Also trigger for ESG/sustainability and mining method questions tied to a specific project. Do not trigger for generic investing questions unrelated to mining, or pure geology trivia with no evaluation angle.
+description: Use for any mining/mineral project evaluation task, including resource estimation, grade-tonnage analysis, economic feasibility (PEA/PFS/FS), cut-off grade sensitivity, risk assessment, or reporting against NI 43-101/JORC/CRIRSCO standards. Trigger when an exploration geologist, mining investor, or analyst asks to interpret drill/assay/geological data, evaluate a mining project's viability, draft or review a technical/investment report on a deposit or mining company, compare resource categories (Measured/Indicated/Inferred), estimate NPV/IRR for a mine plan, or discuss copper, gold, lithium, cobalt, lead, zinc, niobium, tantalum, nickel, rare earths, molybdenum, tungsten, scheelite, zirconium, or titanium. Also trigger for ESG/sustainability or mining-method questions tied to a specific project, and for due diligence where resource quality or mine economics matter. Do not trigger for generic investing questions unrelated to mining, or pure geology trivia with no evaluation angle.
 ---
 
 # Mining Evaluation Skills
@@ -42,6 +42,8 @@ Available scripts (see `scripts/README.md` for exact usage):
 - `scripts/financial_model.py` — NPV, IRR, and payback period from a cash-flow assumption set.
 - `scripts/resource_classification_checklist.py` — a structured checklist (not an authoritative classifier) that walks through CRIRSCO-style confidence criteria to flag what supports/undermines a Measured/Indicated/Inferred claim.
 
+**Price and benchmark freshness.** Metal prices, payability factors, and typical cut-off benchmarks in `references/` are indicative ranges captured at the time of writing, not live data — and commodity prices can move enough in months to flip a project's economics. Whenever an economic conclusion depends on a price assumption (NPV/IRR runs, cut-off sensitivity, "is this grade economic" judgments), verify the current spot/contract price with a web search if search is available, and state the price and its date in the output. If search isn't available, use the user's supplied price or clearly label the assumption as dated. Never present a reference-file price as current.
+
 Resource classification and geostatistical estimation (kriging, variography) are technical disciplines that legally require a Qualified/Competent Person sign-off — this skill helps interpret and structure, but always note where professional certification would be required for a real filing.
 
 ## Step 3: Choose the output format for the scenario
@@ -73,6 +75,21 @@ const doc = new Document({
 });
 ```
 Setting both `name` and `eastAsia` to the same font (Microsoft YaHei) ensures Latin and Chinese characters resolve to one consistent typeface throughout the document, without needing to set `font` on every individual `TextRun`. Only override font on a specific run if that run intentionally needs to look different (e.g. a monospaced figure).
+
+If the environment builds docx with python-docx instead of docx-js, the same principle applies but python-docx has no working document-level eastAsia default — set both the run font name and the `w:eastAsia` attribute on each run via a small helper:
+```python
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+
+def set_cjk_font(run, font_name="Microsoft YaHei"):
+    run.font.name = font_name
+    rPr = run._element.get_or_add_rPr()
+    rFonts = rPr.find(qn('w:rFonts')) or OxmlElement('w:rFonts')
+    if rFonts.getparent() is None:
+        rPr.append(rFonts)
+    rFonts.set(qn('w:eastAsia'), font_name)
+```
+Route every run through this helper so Chinese and Latin text stay on one typeface.
 
 ## Step 4: Reporting standards and templates
 

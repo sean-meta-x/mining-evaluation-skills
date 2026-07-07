@@ -2,6 +2,16 @@
 
 All notable changes to `mining-evaluation-skills` are documented here.
 
+## v1.3 — Optimized fork: trigger accuracy, price freshness, python-docx support
+
+Community-optimized build based on upstream v1.2 (github.com/Hap-hub/mining-evaluation-skills).
+
+**Fixed — description/content drift**: the frontmatter description only listed the original 10 metals, so queries about molybdenum, tungsten, scheelite, zirconium, or titanium (added in v1.1) could fail to trigger the skill. The description now lists all 13 metals, and additionally covers mining-company investment due diligence queries.
+
+**Added — price and benchmark freshness rule** (SKILL.md Step 2): reference-file prices and cut-off benchmarks are static and can silently go stale; the skill now instructs verifying current metal prices via web search before any price-dependent economic conclusion, and always stating the price and its date in the output.
+
+**Added — python-docx font guidance**: the Chinese-font-consistency fix from v1.2 was docx-js-only; environments that build Word files with python-docx (e.g. Claude Cowork sandboxes) got no guidance. Added an equivalent helper pattern setting `w:eastAsia` per run.
+
 ## v1.2 — Fixed inconsistent fonts in Chinese docx reports
 
 **Fixed**: generated Word reports containing Chinese content sometimes showed inconsistent fonts within the same paragraph (e.g. bolded figures or table cells rendering in a different font than surrounding body text).
