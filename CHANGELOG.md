@@ -2,6 +2,18 @@
 
 All notable changes to `mining-evaluation-skills` are documented here.
 
+## v1.4 — M&A buyside module and Indonesia regulatory reference
+
+Field-tested additions from a live Indonesia dual-asset (gold + coal) acquisition engagement.
+
+**Added — `references/ma-buyside.md`**: the deal-level layer between asset NPV and acquisition price — attributable-interest correction (registered vs deliverable stakes, minority leakage), decomposed risk factors with stated semantics (title × execution × geological delivery), the vintage-data trap (old-FS costs vs current prices), cash-at-close vs milestone/earn-out structuring (non-compliant resources priced by multiple, not DCF), fund IRR/MOIC dual-scenario modeling with production-based exit cross-checks (short-remaining-life EBITDA multiples, remaining-NAV × P/NAV), nominal-vs-economic consideration, and listed-buyer injection / market-reaction sequencing. Ends with a 10-point buyside checklist.
+
+**Added — `references/indonesia-regulatory.md`**: Indonesia-specific screen — licensing reality (IUP/RKAB/IPPKH/AMDAL timelines), 49% divestment (listing is not an exemption; Vale precedent), the 2025 fiscal reset (PP 18/19 2025 royalties, gold doré export tax, proposed coal export duty), PP 8/2025 export-proceeds retention (100%/12-month cash trap) with IRR guidance, UU 2/2025 discretionary licensing, artisanal-mining and election-cycle risk, and standard mitigations (BIT/ICSID structuring, political-risk insurance). Includes a 10-item quick screen.
+
+**Changed — `SKILL.md`**: Step 1 focus list now routes M&A/buyside pricing, earn-out structuring, and investor-return modeling to `references/ma-buyside.md`, and Indonesia-related tasks additionally to `references/indonesia-regulatory.md`. Frontmatter description extended with acquisition-pricing and Indonesia triggers.
+
+Both references follow the existing house rules: no fabricated numbers, date-stamp every market/regulatory data point, and defer to QP/licensed-valuer sign-off for formal use.
+
 ## v1.3 — Optimized fork: trigger accuracy, price freshness, python-docx support
 
 Community-optimized build based on upstream v1.2 (github.com/Hap-hub/mining-evaluation-skills).

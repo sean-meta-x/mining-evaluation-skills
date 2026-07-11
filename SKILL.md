@@ -1,6 +1,6 @@
 ---
 name: mining-evaluation-skills
-description: Use for any mining/mineral project evaluation task, including resource estimation, grade-tonnage analysis, economic feasibility (PEA/PFS/FS), cut-off grade sensitivity, risk assessment, or reporting against NI 43-101/JORC/CRIRSCO standards. Trigger when an exploration geologist, mining investor, or analyst asks to interpret drill/assay/geological data, evaluate a mining project's viability, draft or review a technical/investment report on a deposit or mining company, compare resource categories (Measured/Indicated/Inferred), estimate NPV/IRR for a mine plan, or discuss copper, gold, lithium, cobalt, lead, zinc, niobium, tantalum, nickel, rare earths, molybdenum, tungsten, scheelite, zirconium, or titanium. Also trigger for ESG/sustainability or mining-method questions tied to a specific project, and for due diligence where resource quality or mine economics matter. Do not trigger for generic investing questions unrelated to mining, or pure geology trivia with no evaluation angle.
+description: Use for any mining/mineral project evaluation task, including resource estimation, grade-tonnage analysis, economic feasibility (PEA/PFS/FS), cut-off grade sensitivity, risk assessment, or reporting against NI 43-101/JORC/CRIRSCO standards. Trigger when an exploration geologist, mining investor, or analyst asks to interpret drill/assay/geological data, evaluate a mining project's viability, draft or review a technical/investment report on a deposit or mining company, compare resource categories (Measured/Indicated/Inferred), estimate NPV/IRR for a mine plan, or discuss copper, gold, lithium, cobalt, lead, zinc, niobium, tantalum, nickel, rare earths, molybdenum, tungsten, scheelite, zirconium, or titanium. Also trigger for ESG/sustainability or mining-method questions tied to a specific project, and for due diligence where resource quality or mine economics matter. Also trigger for mining M&A and buyside work - acquisition pricing, attributable-interest analysis, earn-out/milestone structuring, fund IRR/MOIC modeling, take-private or asset-injection analysis - and for any task involving Indonesian mining regulation (IUP/RKAB/IPPKH, divestment, royalties, DHE export-proceeds retention). Do not trigger for generic investing questions unrelated to mining, or pure geology trivia with no evaluation angle.
 ---
 
 # Mining Evaluation Skills
@@ -27,6 +27,8 @@ Before producing anything, identify:
    - Risk assessment → `references/risk-assessment.md`
    - Reporting/compliance (NI 43-101, JORC, CRIRSCO) → `references/reporting-standards.md`
    - ESG / sustainability / mining method choice → `references/esg-sustainability.md`
+   - M&A / buyside pricing, deal structuring, investor returns → `references/ma-buyside.md`
+   - Indonesia regulatory / political risk → `references/indonesia-regulatory.md` (in addition to the topical file above)
 2. **Commodity** — if the user names or implies a specific metal, check `references/metals/` for a file matching it: copper, gold, lithium, cobalt, lead-zinc, niobium-tantalum, nickel, rare-earth, molybdenum, tungsten, scheelite, zirconium, titanium. These give you commodity-specific benchmarks (typical grades, cut-offs, deposit types, processing routes, market drivers) so your interpretation isn't generic. Molybdenum, tungsten, and scheelite are closely related but kept as separate files because their processing routes diverge (see the note at the top of `tungsten.md`); the same applies to zirconium and titanium, which are usually co-produced from the same heavy mineral sand deposits but serve different end markets. If no specific metal is named, work generically and note that assumptions are commodity-agnostic.
 3. **Project stage** — grassroots exploration vs. resource definition vs. PEA vs. PFS/FS vs. operating mine. This changes what data confidence and precision is reasonable to expect (see `references/economic-feasibility.md` for the accuracy bands of each stage).
 4. **Audience** — a geologist wants technical precision and defensible methodology language; an investor wants risk-adjusted takeaways and comparability to peers. Calibrate the report's tone and level of jargon accordingly, but never fabricate confidence the data doesn't support — both audiences are worse served by false precision.
@@ -93,15 +95,4 @@ Route every run through this helper so Chinese and Latin text stay on one typefa
 
 ## Step 4: Reporting standards and templates
 
-`references/reporting-standards.md` covers what NI 43-101, JORC, and CRIRSCO actually require, how they differ, and where they converge (they're all CRIRSCO-family codes), plus a regional-standards section covering Brazil, Russia's GKZ classification (A/B/C1/C2), and South Africa's SAMREC code. Consult it whenever the user references a standard by name, or when producing anything that resembles a technical report — get the section structure and disclosure language right rather than inventing generic headers. Note in particular: GKZ does not map one-to-one onto CRIRSCO's Measured/Indicated/Inferred categories — treat any cross-system correspondence as an open, QP-dependent question rather than asserting a conversion.
-
-`assets/templates/` has generic, standards-informed starting structures:
-- `resource_estimation_report.md`
-- `pea_pfs_fs_summary.md`
-- `risk_assessment_matrix.md`
-
-These are public-framework-based skeletons, not copies of any real company's filing — always adapt them to the actual project and flag that a real NI 43-101/JORC filing requires sign-off from a Qualified/Competent Person and full compliance with the code's disclosure rules, which this skill does not substitute for.
-
-## A note on rigor
-
-These outputs get used by people making capital allocation decisions. Where the data is thin, say so plainly rather than smoothing it over — a good risk section or a caveat about resource confidence is more valuable to this audience than an optimistic-sounding paragraph. Flag red flags (e.g., inferred-only resources being used in an FS-level economic case, missing metallurgical recovery data, single-drill-hole grade claims) proactively even if not asked.
+`references/reporting-standards.md` covers what NI 43-101, JORC, and CRIRSCO actually require, how they differ, and where they converge (they're all CRIRSCO-family codes), plus a regional-standards section covering Brazil, Russia's GKZ classification (A/B
